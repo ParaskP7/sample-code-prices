@@ -1,10 +1,10 @@
-package io.petros.prices.presentation
+package io.petros.prices.presentation.feature.prices
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import io.petros.prices.R
-import kotlinx.android.synthetic.main.activity_main.*
+import io.petros.prices.presentation.feature.BaseActivity
+import kotlinx.android.synthetic.main.activity_prices.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -12,7 +12,7 @@ import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
 
-class MainActivity : AppCompatActivity() {
+class PricesActivity : BaseActivity() {
 
     companion object {
 
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         initWebSocket()
         initButtons()
     }
@@ -58,6 +57,12 @@ class MainActivity : AppCompatActivity() {
         client.dispatcher().executorService().shutdown()
         super.onDestroy()
     }
+
+    /* CONTRACT */
+
+    override fun constructContentView() = R.layout.activity_prices
+
+    /* INNER CLASSES */
 
     @SuppressLint("SyntheticAccessor")
     private inner class TestWebSocketListener : WebSocketListener() {
