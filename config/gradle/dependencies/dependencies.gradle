@@ -35,6 +35,10 @@ ext.deps = [
                 'okhttp': "com.squareup.okhttp3:okhttp:$versions.okhttp",
         ],
 
+        'logging'    : [
+                'timber': "com.jakewharton.timber:timber:$versions.timber",
+        ],
+
         // TEST IMPLEMENTATION // *******************************************************************************************
 
         'test'       : [

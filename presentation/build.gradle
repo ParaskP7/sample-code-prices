@@ -58,6 +58,7 @@ dependencies {
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
     implementation deps.network.okhttp
+    implementation deps.logging.timber
 
     testImplementation deps.test.junit
 
