@@ -1,0 +1,29 @@
+ext.versions = [
+
+        // Plugins
+        android_plugin   : '3.2.0', // When updating, also sync that with top-level build.gradle version.
+        kotlin_plugin    : '1.2.71',
+
+        // IMPLEMENTATION // ************************************************************************************************
+
+        // Android
+        support_library  : '28.0.0',
+        constraint_layout: '1.1.3',
+
+        // Network
+        okhttp           : "3.11.0",
+
+        // TEST IMPLEMENTATION // *******************************************************************************************
+
+        // Test
+        junit            : '4.12',
+
+        // ANDROID TEST IMPLEMENTATION // ***********************************************************************************
+
+        // Support Test
+        support_test     : '1.0.2',
+
+        // Android Test
+        espresso         : '3.0.2',
+
+]
