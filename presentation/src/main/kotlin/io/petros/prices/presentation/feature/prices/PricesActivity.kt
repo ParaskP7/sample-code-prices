@@ -21,11 +21,18 @@ class PricesActivity : BaseActivity<PricesActivityViewModel>() {
         private const val NORMAL_CLOSE_STATUS_CODE = 1000
         private const val WEB_SOCKET_RUL = "ws://159.89.15.214:8080"
 
-        private val SUBSCRIBE_MESSAGE = """
+        private val SUBSCRIBE_MESSAGE_1 = """
             {"subscribe": "DE000BASF111"}
         """.trimIndent()
-        private val UNSUBSCRIBE_MESSAGE = """
+        private val UNSUBSCRIBE_MESSAGE_1 = """
             {"unsubscribe": "DE000BASF111"}
+        """.trimIndent()
+
+        private val SUBSCRIBE_MESSAGE_2 = """
+            {"subscribe": "US68389X1054"}
+        """.trimIndent()
+        private val UNSUBSCRIBE_MESSAGE_2 = """
+            {"unsubscribe": "US68389X1054"}
         """.trimIndent()
 
     }
@@ -51,8 +58,14 @@ class PricesActivity : BaseActivity<PricesActivityViewModel>() {
     }
 
     private fun initButtons() {
-        subscribe.setOnClickListener { webSocket.send(SUBSCRIBE_MESSAGE) }
-        unsubscribe.setOnClickListener { webSocket.send(UNSUBSCRIBE_MESSAGE) }
+        subscribe.setOnClickListener {
+            webSocket.send(SUBSCRIBE_MESSAGE_1)
+            webSocket.send(SUBSCRIBE_MESSAGE_2)
+        }
+        unsubscribe.setOnClickListener {
+            webSocket.send(UNSUBSCRIBE_MESSAGE_1)
+            webSocket.send(UNSUBSCRIBE_MESSAGE_2)
+        }
     }
 
     private fun output(text: String) {
