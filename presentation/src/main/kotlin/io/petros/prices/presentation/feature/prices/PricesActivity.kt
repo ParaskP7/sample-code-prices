@@ -12,7 +12,7 @@ import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
 
-class PricesActivity : BaseActivity() {
+class PricesActivity : BaseActivity<PricesActivityViewModel>() {
 
     companion object {
 
@@ -61,6 +61,8 @@ class PricesActivity : BaseActivity() {
     /* CONTRACT */
 
     override fun constructContentView() = R.layout.activity_prices
+
+    override fun constructViewModel() = PricesActivityViewModel::class.java
 
     /* INNER CLASSES */
 
