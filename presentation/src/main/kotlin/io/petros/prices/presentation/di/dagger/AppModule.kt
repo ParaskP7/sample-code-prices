@@ -3,9 +3,16 @@ package io.petros.prices.presentation.di.dagger
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import io.petros.prices.data.di.dagger.RepositoriesModule
+import io.petros.prices.data.di.dagger.SchedulersModule
 import io.petros.prices.presentation.App
 
-@Module
+@Module(
+    includes = [
+        SchedulersModule::class,
+        RepositoriesModule::class
+    ]
+)
 class AppModule {
 
     @Provides

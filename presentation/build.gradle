@@ -63,6 +63,8 @@ dependencies {
     implementation deps.di.daggerAndroid
     kapt deps.di.daggerCompiler
     kapt deps.di.daggerAndroidProcessor
+    implementation deps.rx.rxjava
+    implementation deps.rx.rxandroid
     implementation deps.network.okhttp
     implementation deps.logging.timber
 

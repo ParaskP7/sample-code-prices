@@ -1,6 +1,7 @@
 package io.petros.prices.presentation.feature.prices
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import io.petros.prices.R
 import io.petros.prices.presentation.feature.BaseActivity
@@ -12,6 +13,7 @@ import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
 
+@Suppress("TooManyFunctions")
 class PricesActivity : BaseActivity<PricesActivityViewModel>() {
 
     companion object {
@@ -35,7 +37,11 @@ class PricesActivity : BaseActivity<PricesActivityViewModel>() {
         super.onCreate(savedInstanceState)
         initWebSocket()
         initButtons()
+        initObservers()
+        loadData()
     }
+
+    /* TO BE REPLACED */
 
     private fun initWebSocket() {
         val request = Request.Builder().url(WEB_SOCKET_RUL).build()
@@ -58,6 +64,24 @@ class PricesActivity : BaseActivity<PricesActivityViewModel>() {
         super.onDestroy()
     }
 
+    /* OBSERVERS */
+
+    private fun initObservers() {
+        observePrices()
+    }
+
+    private fun observePrices() {
+        viewModel.pricesObservable.observe(this, Observer { it ->
+            it?.let { output.text = it.toString() }
+        })
+    }
+
+    /* DATA LOADING */
+
+    private fun loadData() {
+        viewModel.loadPrices()
+    }
+
     /* CONTRACT */
 
     override fun constructContentView() = R.layout.activity_prices
@@ -70,7 +94,7 @@ class PricesActivity : BaseActivity<PricesActivityViewModel>() {
     private inner class TestWebSocketListener : WebSocketListener() {
 
         override fun onOpen(webSocket: WebSocket, response: Response) {
-            output("Open: ${response.message()}")
+            // output("Open: ${response.message()}")
         }
 
         override fun onMessage(webSocket: WebSocket, text: String) {
