@@ -65,6 +65,7 @@ dependencies {
     kapt deps.di.daggerAndroidProcessor
     implementation deps.rx.rxjava
     implementation deps.rx.rxandroid
+    implementation deps.network.gson
     implementation deps.network.okhttp
     implementation deps.logging.timber
 

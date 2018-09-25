@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- Trade Republic -->
+    <string name="websocket_traderepublic_url">ws://159.89.15.214:8080/</string>
+
+</resources>

@@ -27,6 +27,7 @@ ext.versions = [
         rxandroid        : '2.1.0',
 
         // Network
+        gson             : "2.8.5",
         okhttp           : "3.11.0",
 
         // Logging

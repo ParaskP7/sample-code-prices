@@ -1,10 +1,12 @@
 package io.petros.prices.domain.repository.price
 
 import io.petros.prices.domain.model.price.Price
-import io.reactivex.Single
+import io.reactivex.Observable
 
 interface PricesRepository {
 
-    fun loadPrices(): Single<Price>
+    fun getPriceSubscription(): Observable<Price>
+
+    fun push(message: String)
 
 }

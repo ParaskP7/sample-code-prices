@@ -48,6 +48,7 @@ ext.deps = [
         ],
 
         'network'    : [
+                'gson'  : "com.google.code.gson:gson:$versions.gson",
                 'okhttp': "com.squareup.okhttp3:okhttp:$versions.okhttp",
         ],
 
