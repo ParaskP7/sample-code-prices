@@ -1,5 +1,6 @@
 package io.petros.prices.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import io.petros.prices.R
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    @SuppressLint("SyntheticAccessor")
     private inner class TestWebSocketListener : WebSocketListener() {
 
         override fun onOpen(webSocket: WebSocket, response: Response) {
