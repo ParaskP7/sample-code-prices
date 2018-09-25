@@ -1,2 +1,137 @@
-# sample-code-prices
-This repository contains sample code. Its purpose being, to quickly demonstrate Android and software development in general, clean code, best practices, testing and all those other must know goodies.
+# Sample Code: Prices
+
+This repository contains sample code. 
+
+Its purpose being, to quickly demonstrate Android, Kotlin and software development in general. More so and amongst others, 
+the main focus of this project is:
+- Setup and Gradle configuration, 
+- Gradle modules,
+- Clean architecture,
+- Clean code,
+- Best practices and 
+- All those other must know goodies.
+
+Below is a list of goodies that are being showcased:
+
+1. Architectural Pattern
+    1. [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) ```(By employing 
+    clean architecture, you can design applications with very low coupling and independent of technical implementation 
+    details, such as databases and frameworks. That way, the application becomes easy to maintain and flexible to change. 
+    It also becomes intrinsically testable.)```
+    2. [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) ```(Model View ViewModel)```
+    3. [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) ```(Architecture Components 
+    ViewModel Class)```
+    4. [LivaData](https://developer.android.com/topic/libraries/architecture/livedata) ```(Architecture Components 
+    LiveData Class)```
+2. Libraries
+    1. [Dagger](https://github.com/google/dagger) ```(A fast dependency injector for Android and Java)```
+    2. [RxJava](https://github.com/ReactiveX/RxJava) ```(RxJava – Reactive Extensions for the JVM – a library for 
+    composing asynchronous and event-based programs using observable sequences for the Java VM)```
+    3. [OkHttp](https://square.github.io/okhttp) ```(HTTP is the way modern applications network. It’s how we exchange data 
+    & media. Doing HTTP efficiently makes your stuff load faster and saves bandwidth)```
+    4. [GSON](https://github.com/google/gson) ```(A Java serialization/deserialization library to convert Java Objects into 
+    JSON and back)```
+    5. [Timber](https://github.com/JakeWharton/timber) ```(A logger with a small, extensible API which provides utility on 
+    top of Android's normal Log class)```
+3. Android Support
+    1. [Constraint Layout](https://developer.android.com/reference/android/support/constraint/ConstraintLayout) ```(A 
+    ConstraintLayout is a ViewGroup which allows you to position and size widgets in a flexible way)```
+4. Code Quality
+    1. [Android Lint](https://developer.android.com/studio/write/lint.html) ```(The lint tool checks your Android project 
+    source files for potential bugs and optimization improvements for correctness, security, performance, usability, 
+    accessibility, and internationalization)```
+    2. [Detekt](https://github.com/arturbosch/detekt) ```(Static code analysis for Kotlin)```
+6. Debug
+    1. [LeakCanary](https://github.com/square/leakcanary) ```(A memory leak detection library for Android and Java)```
+    1. [Strict Mode](https://developer.android.com/reference/android/os/StrictMode) ```(StrictMode is a developer tool which 
+    detects things you might be doing by accident and brings them to your attention so you can fix them)```
+7. Plugin
+    1. [Gradle Versions](https://github.com/ben-manes/gradle-versions-plugin) ```(Gradle plugin to discover dependency 
+    updates)```
+    2. [Dexcount Gradle](https://github.com/KeepSafe/dexcount-gradle-plugin) ```(A Gradle plugin to report the number of 
+    method references in your APK on every build)```
+
+# Screenshots
+
+![alt tag](https://github.com/ParaskP7/sample-code-prices/blob/master/demo.png)
+
+# Usage
+
+Use the below command to build the project in order to install it on an Android device for demonstration:
+```
+gradlew clean build -x check
+```
+
+Or faster yet and targeting a specific build type (in our case the debug build type):
+```
+gradlew clean assembleDebug
+```
+
+Open an emulator or connect a physical device to experiment with the sample app, use the below command, which first 
+uninstalls and then installs the sample app:
+```
+gradlew uninstallDebug | gradlew installDebug
+```
+
+Or faster yet, target a specific device (in our case an emulator):
+```
+adb -s emulator-5554 uninstall io.petros.prices | 
+adb -s emulator-5554 install presentation\build\outputs\apk\debug\presentation-debug.apk
+```
+
+Use this command in order to run the static code analysis for the project:
+```
+gradlew check -x test
+```
+
+Or if you want to be more specific, run the below commands to run the code quality tool or your choice (in isolation):
+```
+gradlew lintDebug
+gradlew detektCheck
+```
+
+# Future
+
+Below is a list of all those ```I WISH I HAD MORE TIME TO DO``` future technical enhancements:
+1. Espresso tests (preferable with the Robot pattern). See `MET` comment which stands for `Missing Espresso Tests`
+2. Integration tests (preferable with MockWebServer). See `MIT` comment which stands for `Missing Integration Tests`
+3. Missing Robolectric tests. See `MRT` comment which stands for `Missing Robolectric Tests`
+4. Missing Unit tests. See `MUT` comment which stands for `Missing Unit Tests`
+5. Small, medium and large screen considerations.
+6. UI changes during screen rotations.
+7. Other lifecycle related edge case events.
+
+Furthermore, below is a wish list of all those ```I REALLY WANNA DO, AND WILL DO AT SOME POINT``` future architecture 
+and library enhancements:
+1. Enhance MVVM with MVI. To get an understand of MVI and how it applies to MVVM (or MVP), start with this article
+   [MVI](http://hannesdorfmann.com/android/model-view-intent) ```(Model-View_Intent, is an architecture enhancment that 
+   tries to solve the state problem, which most complex application have, especially when the screen complexity grows)```
+2. Replace Dagger with Koin. For more info, see [Koin](https://github.com/InsertKoinIO/koin) ```(A pragmatic lightweight 
+   dependency injection framework for Kotlin)```
+3. Replace RxJava with Coroutines. For more info, see [Coroutines](https://kotlinlang.org/docs/reference/coroutines.html) ```
+   (Coroutines simplify asynchronous programming by putting the complications into libraries. The logic of the program can 
+   be expressed sequentially in a coroutine, and the underlying library will figure out the asynchrony for us)```
+4. Replace Manual Navigation with the Navigation Architecture Component. For more info, see 
+   [Navigation Architecture Component](https://developer.android.com/topic/libraries/architecture/navigation/) ```(The 
+   Navigation Architecture Component simplifies the implementation of navigation in an Android app)```
+5. Replace Manual Pagination with the Paging Architecture Component. For more info, see 
+   [Paging Architecture Component](https://developer.android.com/topic/libraries/architecture/paging/) ```(The Paging 
+   Library makes it easier for you to load data gradually and gracefully within your app's RecyclerView)```
+6. Add Offline Support with Room. For more info, see [Room](https://developer.android.com/topic/libraries/architecture/room) ```
+   (The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while 
+   harnessing the full power of SQLite)```
+7. Upgrade JUnit4 to SPEK Framework and JUnit5. For more info, see [SPEK](https://spekframework.org/) ```(A specification 
+   framework for Kotlin)``` and [JUnit5](https://junit.org/junit5/) ```(JUnit 5 is the next generation of JUnit)```
+8. Replace Gradle Groovy with Kotlin DSL. For more info, see [Gradle Kotlin DSL](https://github.com/gradle/kotlin-dsl) ```
+   (Kotlin language support for Gradle build scripts)```
+9. Replace Manual Android Extensions with Android KTX. For more info, see 
+   [Android KTX](https://developer.android.com/kotlin/ktx) ```(Android KTX is a set of Kotlin extensions that is part of the 
+   Android Jetpack family)```
+10. Replace current package structure to the new AndroidX package structure. For more info, see 
+    [AndroidX](https://developer.android.com/topic/libraries/support-library/androidx-overview) ```(A new package structure 
+    to make it clearer which packages are bundled with the Android operating system, and which are packaged with your app's 
+    APK)```
+11. Last but not least, convert the whole thing to [Flutter](https://flutter.io/)! ```JUST KIDDING 😛 ...OR AM I!```
+
+
+**THANK YOU**
