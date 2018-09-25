@@ -8,11 +8,11 @@ import io.petros.prices.presentation.di.dagger.activity.SubModuleBinding
 import io.petros.prices.presentation.di.dagger.viewmodel.ViewModelKey
 
 @Module
-abstract class PricesActivitySubModule : SubModuleBinding<PricesActivity> {
+abstract class InstrumentsActivitySubModule : SubModuleBinding<InstrumentsActivity> {
 
     @Binds
     @IntoMap
-    @ViewModelKey(PricesActivityViewModel::class)
-    abstract fun bindPricesActivityViewModel(pricesActivityViewModel: PricesActivityViewModel): ViewModel
+    @ViewModelKey(InstrumentsActivityViewModel::class)
+    abstract fun bindInstrumentsActivityViewModel(instrumentsActivityViewModel: InstrumentsActivityViewModel): ViewModel
 
 }

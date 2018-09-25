@@ -1,25 +1,25 @@
-package io.petros.prices.domain.interactor.price
+package io.petros.prices.domain.interactor.instrument
 
 import io.petros.prices.domain.interactor.UseCase
-import io.petros.prices.domain.model.price.Price
+import io.petros.prices.domain.model.instrument.Instrument
 import io.petros.prices.domain.reactive.rx.RxSchedulers
-import io.petros.prices.domain.repository.price.PricesRepository
+import io.petros.prices.domain.repository.instrument.InstrumentsRepository
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
-class PriceUpdatesUseCase @Inject constructor(
-    pricesRepository: PricesRepository,
+class InstrumentUpdatesUseCase @Inject constructor(
+    instrumentsRepository: InstrumentsRepository,
     private val rxSchedulers: RxSchedulers
 ) : UseCase() {
 
-    private var publishSubject = PublishSubject.create<Price>()
+    private var publishSubject = PublishSubject.create<Instrument>()
 
     init {
-        pricesRepository.getPriceSubscription().subscribe(publishSubject)
+        instrumentsRepository.getInstrumentsSubscription().subscribe(publishSubject)
     }
 
-    fun subscribe(observer: DisposableObserver<Price>) {
+    fun subscribe(observer: DisposableObserver<Instrument>) {
         publishSubject
             .retry()
             .subscribeOn(rxSchedulers.io)

@@ -5,14 +5,14 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import io.petros.prices.presentation.di.dagger.viewmodel.ViewModelFactory
-import io.petros.prices.presentation.feature.prices.PricesActivity
-import io.petros.prices.presentation.feature.prices.PricesActivitySubModule
+import io.petros.prices.presentation.feature.prices.InstrumentsActivity
+import io.petros.prices.presentation.feature.prices.InstrumentsActivitySubModule
 
 @Module
 abstract class ActivitiesModule {
 
-    @ContributesAndroidInjector(modules = [PricesActivitySubModule::class])
-    abstract fun bindsPricesActivity(): PricesActivity
+    @ContributesAndroidInjector(modules = [InstrumentsActivitySubModule::class])
+    abstract fun bindsInstrumentsActivity(): InstrumentsActivity
 
     /* VIEW MODEL */
 

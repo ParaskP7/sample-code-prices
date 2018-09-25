@@ -2,25 +2,25 @@ package io.petros.prices.presentation.feature.prices
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import io.petros.prices.domain.interactor.price.PriceUpdatesUseCase
+import io.petros.prices.domain.interactor.instrument.InstrumentUpdatesUseCase
 import io.petros.prices.domain.interactor.subscription.SubscribeToInstrumentUseCase
 import io.petros.prices.domain.interactor.subscription.UnsubscribeFromInstrumentUseCase
-import io.petros.prices.domain.model.price.Price
-import io.petros.prices.presentation.feature.prices.subscriber.PricesSubscriber
+import io.petros.prices.domain.model.instrument.Instrument
+import io.petros.prices.presentation.feature.prices.subscriber.InstrumentSubscriber
 import io.petros.prices.presentation.feature.prices.subscriber.SubscribeToInstrumentSubscriber
 import io.petros.prices.presentation.feature.prices.subscriber.UnsubscribeFromInstrumentSubscriber
 import javax.inject.Inject
 
-class PricesActivityViewModel @Inject constructor(
-    private val priceUpdatesUseCase: PriceUpdatesUseCase,
+class InstrumentsActivityViewModel @Inject constructor(
+    private val instrumentUpdatesUseCase: InstrumentUpdatesUseCase,
     private val subscribeToInstrumentUseCase: SubscribeToInstrumentUseCase,
     private val unsubscribeFromInstrumentUseCase: UnsubscribeFromInstrumentUseCase
 ) : ViewModel() {
 
-    val pricesObservable = MutableLiveData<Price>()
+    val instrumentObservable = MutableLiveData<Instrument>()
 
-    fun subscribeForPriceUpdates() {
-        priceUpdatesUseCase.subscribe(PricesSubscriber(pricesObservable))
+    fun subscribeForInstrumentUpdates() {
+        instrumentUpdatesUseCase.subscribe(InstrumentSubscriber(instrumentObservable))
     }
 
     fun subscribeToInstrument(isin: String) {
@@ -39,7 +39,7 @@ class PricesActivityViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        priceUpdatesUseCase.dispose()
+        instrumentUpdatesUseCase.dispose()
         subscribeToInstrumentUseCase.dispose()
         unsubscribeFromInstrumentUseCase.dispose()
     }
