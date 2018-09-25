@@ -3,36 +3,31 @@ package io.petros.prices.presentation.feature.prices
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import io.petros.prices.R
+import io.petros.prices.domain.model.price.Price
 import io.petros.prices.presentation.feature.BaseActivity
+import io.petros.prices.presentation.feature.prices.listener.SubscriptionCallback
+import io.petros.prices.presentation.feature.prices.view.InstrumentView
 import kotlinx.android.synthetic.main.activity_prices.*
 
-class PricesActivity : BaseActivity<PricesActivityViewModel>() {
-
-    companion object {
-
-        private const val INSTRUMENT_1 = "DE000BASF111"
-        private const val INSTRUMENT_2 = "US68389X1054"
-
-    }
+@Suppress("TooManyFunctions")
+class PricesActivity : BaseActivity<PricesActivityViewModel>(), SubscriptionCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initButtons()
+        initInstruments()
         initObservers()
         subscribeForUpdates()
     }
 
     /* VIEWS */
 
-    private fun initButtons() {
-        subscribe.setOnClickListener {
-            viewModel.subscribeToInstrument(INSTRUMENT_1)
-            viewModel.subscribeToInstrument(INSTRUMENT_2)
-        }
-        unsubscribe.setOnClickListener {
-            viewModel.unsubscribeFromInstrument(INSTRUMENT_1)
-            viewModel.unsubscribeFromInstrument(INSTRUMENT_2)
-        }
+    private fun initInstruments() {
+        btn_add.setOnClickListener { addInstrument() }
+        addInstrument()
+    }
+
+    private fun addInstrument() {
+        ll_instruments.addView(InstrumentView(this))
     }
 
     /* OBSERVERS */
@@ -43,14 +38,34 @@ class PricesActivity : BaseActivity<PricesActivityViewModel>() {
 
     private fun observePrices() {
         viewModel.pricesObservable.observe(this, Observer { it ->
-            it?.let { output.text = it.toString() }
+            it?.let { checkAndDisplayPrice(it) }
         })
+    }
+
+    @Suppress("NestedBlockDepth")
+    private fun checkAndDisplayPrice(price: Price) {
+        for (index in 0..ll_instruments.childCount) {
+            val instrumentView = ll_instruments.getChildAt(index) as? InstrumentView
+            instrumentView?.let { if (it.matchesIsin(price)) it.bind(price) }
+        }
     }
 
     /* DATA LOADING */
 
     private fun subscribeForUpdates() {
         viewModel.subscribeForPriceUpdates()
+    }
+
+    /* CALLBACKS */
+
+    override fun onSubscribe(isin: String) {
+        viewModel.subscribeToInstrument(isin)
+        addInstrument()
+    }
+
+    override fun onUnsubscribe(isin: String) {
+        viewModel.unsubscribeFromInstrument(isin)
+        addInstrument()
     }
 
     /* CONTRACT */

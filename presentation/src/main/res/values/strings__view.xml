@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name="instrument_isin_edit_text_hint">Enter ISIN…</string>
+    <string name="instrument_price_default_text">0</string>
+    <string name="instrument_subscribe_button_text">START</string>
+    <string name="instrument_unsubscribe_button_text">STOP</string>
+
+</resources>

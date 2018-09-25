@@ -2,7 +2,11 @@
 
 <resources>
 
-    <string name="subscribe">Subscribe</string>
-    <string name="unsubscribe">Unsubscribe</string>
+    <string name="instrument_add_button_text">ADD INSTRUMENT</string>
+
+    <string name="instrument_isin_label_text">ISIN</string>
+    <string name="instrument_price_label_text">Price</string>
+    <string name="instrument_subscribe_label_text">Subsc.</string>
+    <string name="instrument_unsubscribe_label_text">Unsub.</string>
 
 </resources>
